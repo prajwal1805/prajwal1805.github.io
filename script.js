@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Function to fetch writings dynamically
 async function fetchWritings() {
     try {
-        const response = await fetch(file + "?t=" + new Date().getTime()); // Fetch JSON file
+        const response = await fetch("writings.json?t=" + new Date().getTime()); // Prevent caching
         const writings = await response.json();
         const writingsList = document.getElementById("writings-list");
         const contentDisplay = document.getElementById("content-display");
@@ -39,7 +39,7 @@ async function fetchWritings() {
                 const file = event.target.dataset.file;
 
                 try {
-                    const response = await fetch(file);
+                    const response = await fetch(file + "?t=" + new Date().getTime());
                     const text = await response.text();
                     contentDisplay.innerHTML = `<h2>${writing.title}</h2><p>${text.replace(/\n/g, "<br>")}</p>`;
                 } catch (error) {
