@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Function to fetch writings dynamically
 async function fetchWritings() {
     try {
-        const response = await fetch("writings.json"); // Fetch JSON file
+        const response = await fetch(file + "?t=" + new Date().getTime()); // Fetch JSON file
         const writings = await response.json();
         const writingsList = document.getElementById("writings-list");
         const contentDisplay = document.getElementById("content-display");
