@@ -1,39 +1,87 @@
+/* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin: 20px;
-}
-
-h1 {
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    font-family: 'Poppins', sans-serif;
     color: #333;
-}
-
-ul {
-    list-style-type: none;
+    margin: 0;
     padding: 0;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-li {
-    margin: 10px 0;
+/* Headings */
+h1, h2, h3 {
+    color: #222;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Links */
 a {
+    color: #ff6b6b;
     text-decoration: none;
-    color: blue;
-    font-size: 18px;
+    transition: color 0.3s ease-in-out;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: #ff3b3b;
 }
 
-#content-display {
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid #ccc;
-    background: #f9f9f9;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
+/* Button Styling */
+button {
+    background: #ff6b6b;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
 }
 
+button:hover {
+    transform: scale(1.1);
+    background: #ff3b3b;
+}
+
+/* Light/Dark Mode */
+.dark-mode {
+    background: #222;
+    color: white;
+}
+
+.dark-mode h1, 
+.dark-mode h2, 
+.dark-mode h3 {
+    color: white;
+}
+
+.dark-mode a {
+    color: #ffbe76;
+}
+
+.dark-mode a:hover {
+    color: #ff9f1a;
+}
+
+/* Card Layout */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    .card {
+        padding: 15px;
+    }
+}
