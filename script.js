@@ -11,9 +11,9 @@ async function fetchWritingsList() {
         writingsList.innerHTML = "";
 
         // Generate links dynamically
-        writings.forEach((writing, index) => {
+        writings.forEach((writing) => {
             const listItem = document.createElement("li");
-            listItem.innerHTML = `<a href="#" data-index="${index}">${writing.title}</a>`;
+            listItem.innerHTML = `<a href="#" data-file="writings/${writing.file}">${writing.title}</a>`;
             writingsList.appendChild(listItem);
         });
 
@@ -21,12 +21,12 @@ async function fetchWritingsList() {
         writingsList.addEventListener("click", async function(event) {
             if (event.target.tagName === "A") {
                 event.preventDefault();
-                const index = event.target.getAttribute("data-index");
+                const filePath = event.target.getAttribute("data-file");
 
                 try {
-                    const response = await fetch(writings[index].file);
+                    const response = await fetch(filePath);
                     const text = await response.text();
-                    contentDisplay.innerHTML = `<h2>${writings[index].title}</h2><p>${text}</p>`;
+                    contentDisplay.innerHTML = `<h2>${event.target.textContent}</h2><p>${text}</p>`;
                 } catch (error) {
                     contentDisplay.innerHTML = `<p>Error loading content.</p>`;
                 }
