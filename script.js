@@ -1,16 +1,17 @@
-// Dark Mode Toggle
-function toggleDarkMode() {
-    document.body.classList.toggle("dark-mode");
-    const isDark = document.body.classList.contains("dark-mode");
-    localStorage.setItem("darkMode", isDark); // Save preference
-}
-
-// Check and apply dark mode preference on page load
 document.addEventListener("DOMContentLoaded", () => {
+    // Load dark mode preference
     if (localStorage.getItem("darkMode") === "true") {
         document.body.classList.add("dark-mode");
     }
-    fetchWritings(); // Load writings dynamically
+
+    // Toggle dark mode
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+    });
+
+    // Load writings
+    fetchWritings();
 });
 
 // Function to fetch writings dynamically
