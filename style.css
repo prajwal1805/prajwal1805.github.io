@@ -42,23 +42,6 @@ button:hover {
     background: #ff3b3b;
 }
 
-/* Dark Mode Toggle Button */
-.toggle-dark-mode {
-    background: #4a90e2;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
-}
-
-.toggle-dark-mode:hover {
-    transform: scale(1.1);
-    background: #357ABD;
-}
-
 /* Light/Dark Mode */
 .dark-mode {
     background: #222;
@@ -93,6 +76,21 @@ button:hover {
     transform: translateY(-5px);
 }
 
+/* Ensure text color switches properly in dark mode */
+.card h2, .card p {
+    color: #222; /* Default dark text in light mode */
+}
+
+.dark-mode .card {
+    background: #333; /* Dark background for cards */
+    color: white; /* White text */
+}
+
+.dark-mode .card h2, 
+.dark-mode .card p {
+    color: white; /* Ensure text turns white in dark mode */
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     body {
@@ -102,3 +100,4 @@ button:hover {
         padding: 15px;
     }
 }
+
