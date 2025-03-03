@@ -1,43 +1,31 @@
-// Function to fetch the list of writings dynamically
-async function fetchWritingsList() {
-    try {
-        const response = await fetch('writings.json'); // Fetch the list of writings
-        const writings = await response.json();
-
-        const writingsList = document.getElementById("writings-list");
-        const contentDisplay = document.getElementById("content-display");
-
-        // Clear existing list
-        writingsList.innerHTML = "";
-
-        // Generate links dynamically
-        writings.forEach((writing) => {
-            const listItem = document.createElement("li");
-            listItem.innerHTML = `<a href="#" data-file="writings/${writing.file}">${writing.title}</a>`;
-            writingsList.appendChild(listItem);
-        });
-
-        // Event listener for displaying content
-        writingsList.addEventListener("click", async function(event) {
-            if (event.target.tagName === "A") {
-                event.preventDefault();
-                const filePath = event.target.getAttribute("data-file");
-
-                try {
-                    const response = await fetch(filePath);
-                    if (!response.ok) throw new Error("File not found");
-                    const text = await response.text();
-                    contentDisplay.innerHTML = `<h2>${event.target.textContent}</h2><p>${text}</p>`;
-                } catch (error) {
-                    contentDisplay.innerHTML = `<p>Error loading content: ${error.message}</p>`;
-                }
-            }
-        });
-
-    } catch (error) {
-        console.error("Error loading writings list:", error);
+// List of your writings
+const writings = [
+    { 
+        title: "My First Writing", 
+        content: "This is the content of my first writing. It talks about..."
+    },
+    { 
+        title: "Another Article", 
+        content: "This is another article about a fascinating topic..."
     }
-}
+];
 
-// Load the writings list when the page loads
-fetchWritingsList();
+// Get the list and content display elements
+const writingsList = document.getElementById("writings-list");
+const contentDisplay = document.getElementById("content-display");
+
+// Generate links dynamically
+writings.forEach((writing, index) => {
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `<a href="#" data-index="${index}">${writing.title}</a>`;
+    writingsList.appendChild(listItem);
+});
+
+// Add event listener to display content when clicked
+writingsList.addEventListener("click", function(event) {
+    if (event.target.tagName === "A") {
+        event.preventDefault();
+        const index = event.target.getAttribute("data-index");
+        contentDisplay.innerHTML = `<h2>${writings[index].title}</h2><p>${writings[index].content}</p>`;
+    }
+});
