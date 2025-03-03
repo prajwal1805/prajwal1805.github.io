@@ -2,8 +2,9 @@
     {
         "title": "My First Writing",
         "file": "writings/my-first-writing.txt"
-    }
+    },
     {
          "title":"Second Writing",
          "file":"writings/second-writing.txt"
+    }
 ]
