@@ -1,20 +1,17 @@
-// Function to toggle dark mode
+// Dark Mode Toggle
 function toggleDarkMode() {
-    const body = document.body;
-    body.classList.toggle("dark-mode");
-
-    // Save user preference in local storage
-    const isDarkMode = body.classList.contains("dark-mode");
-    localStorage.setItem("darkMode", isDarkMode);
+    document.body.classList.toggle("dark-mode");
+    const isDark = document.body.classList.contains("dark-mode");
+    localStorage.setItem("darkMode", isDark); // Save preference
 }
 
-// Function to check and apply dark mode preference
-function applyDarkModePreference() {
-    const isDarkMode = localStorage.getItem("darkMode") === "true";
-    if (isDarkMode) {
+// Check and apply dark mode preference on page load
+document.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("darkMode") === "true") {
         document.body.classList.add("dark-mode");
     }
-}
+    fetchWritings(); // Load writings dynamically
+});
 
 // Function to fetch writings dynamically
 async function fetchWritings() {
@@ -57,7 +54,3 @@ async function fetchWritings() {
         console.error("Error loading writings:", error);
     }
 }
-
-// Load writings when page loads
-fetchWritings();
-applyDarkModePreference();
