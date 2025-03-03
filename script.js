@@ -25,10 +25,11 @@ async function fetchWritingsList() {
 
                 try {
                     const response = await fetch(filePath);
+                    if (!response.ok) throw new Error("File not found");
                     const text = await response.text();
                     contentDisplay.innerHTML = `<h2>${event.target.textContent}</h2><p>${text}</p>`;
                 } catch (error) {
-                    contentDisplay.innerHTML = `<p>Error loading content.</p>`;
+                    contentDisplay.innerHTML = `<p>Error loading content: ${error.message}</p>`;
                 }
             }
         });
