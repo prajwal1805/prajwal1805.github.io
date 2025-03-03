@@ -1,24 +1,15 @@
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f4f4f4;
-}
+// List of your writings
+const writings = [
+    { title: "My First Writing", link: "https://example.com/my-first-writing" },
+    { title: "Another Article", link: "https://example.com/another-article" }
+];
 
-h1 {
-    color: #333;
-}
+// Get the list element
+const writingsList = document.getElementById("writings-list");
 
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-ul li {
-    margin: 10px 0;
-}
-
-a {
-    text-decoration: none;
-    color: blue;
-    font-size: 18px;
-}
+// Generate links dynamically
+writings.forEach(writing => {
+    const listItem = document.createElement("li");
+    listItem.innerHTML = `<a href="${writing.link}" target="_blank">${writing.title}</a>`;
+    writingsList.appendChild(listItem);
+});
