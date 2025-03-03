@@ -1,3 +1,5 @@
 [
-    { "title": "My First Writing", "file": "my-first-writing.txt" }
+    { "title": "My First Writing", "file": "my-first-writing.txt" },
+    { "title": "My Second Writing", "file": "my-second-writing.txt" },
+    { "title": "My Third Writing", "file": "my-third-writing.txt" }
 ]
