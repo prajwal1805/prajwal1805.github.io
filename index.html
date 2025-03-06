@@ -3,25 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>My Interactive Website</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
-    <button id="theme-toggle">Toggle Dark Mode</button>
-
-    <div class="card">
-        <h2>Welcome to My Website</h2>
-        <p>This is a sample paragraph to test styling.</p>
+    <div class="navbar">
+        <h1>My Writings</h1>
+        <button id="theme-toggle" class="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
     </div>
 
-    <!-- Writings List -->
-    <h2>My Writings</h2>
-    <ul id="writings-list"></ul>
-    
-    <!-- Writing Content Display -->
-    <div id="content-display"></div>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Available Writings</h2>
+            <ul id="writings-list"></ul>
+        </aside>
+
+        <main class="content">
+            <div id="content-display" class="writing-content">
+                <h2>Select a Writing</h2>
+                <p>Click on a title from the left to view its content.</p>
+            </div>
+        </main>
+    </div>
 
     <script src="script.js"></script>
+
 </body>
 </html>
