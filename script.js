@@ -18,7 +18,7 @@ function loadTheme() {
 // Fetch Writings
 async function fetchWritings() {
     try {
-        const response = await fetch("writings.json");
+        const response = await fetch("writings.json?t=" + new Date().getTime());
         const writings = await response.json();
         const writingsList = document.getElementById("writings-list");
         writingsList.innerHTML = "";
