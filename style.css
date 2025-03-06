@@ -1,103 +1,126 @@
 /* General Styling */
 body {
-    background: linear-gradient(135deg, #74ebd5, #acb6e5);
     font-family: 'Poppins', sans-serif;
-    color: #333;
+    background: linear-gradient(135deg, #222, #444);
+    color: white;
     margin: 0;
     padding: 0;
-    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
-/* Headings */
-h1, h2, h3 {
-    color: #222;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 15px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Links */
-a {
-    color: #ff6b6b;
+.navbar h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+    transition: transform 0.3s;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.2);
+}
+
+/* Layout */
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 10px 0;
+}
+
+.sidebar a {
+    color: white;
     text-decoration: none;
+    font-size: 18px;
     transition: color 0.3s ease-in-out;
 }
 
-a:hover {
-    color: #ff3b3b;
+.sidebar a:hover {
+    color: #ff6b6b;
 }
 
-/* Button Styling */
-button {
-    background: #ff6b6b;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+/* Content */
+.content {
+    flex: 1;
+    padding: 30px;
 }
 
-button:hover {
-    transform: scale(1.1);
-    background: #ff3b3b;
+.writing-content {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Light/Dark Mode */
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Dark Mode */
 .dark-mode {
-    background: #222;
-    color: white;
+    background: linear-gradient(135deg, #111, #333);
 }
 
-.dark-mode h1, 
-.dark-mode h2, 
-.dark-mode h3 {
-    color: white;
+.dark-mode .navbar,
+.dark-mode .sidebar {
+    background: rgba(0, 0, 0, 0.8);
 }
 
-.dark-mode a {
+.dark-mode .theme-toggle i {
+    color: yellow;
+}
+
+.dark-mode .sidebar a {
+    color: #ddd;
+}
+
+.dark-mode .sidebar a:hover {
     color: #ffbe76;
 }
-
-.dark-mode a:hover {
-    color: #ff9f1a;
-}
-
-/* Card Layout */
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
-    transition: transform 0.2s ease-in-out;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-/* Ensure text color switches properly in dark mode */
-.card h2, .card p {
-    color: #222; /* Default dark text in light mode */
-}
-
-.dark-mode .card {
-    background: #333; /* Dark background for cards */
-    color: white; /* White text */
-}
-
-.dark-mode .card h2, 
-.dark-mode .card p {
-    color: white; /* Ensure text turns white in dark mode */
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-    .card {
-        padding: 15px;
-    }
-}
-
