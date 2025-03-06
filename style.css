@@ -1,126 +1,97 @@
-/* General Styling */
+/* General Styles */
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #222, #444);
-    color: white;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1a1a1a, #3a3a3a);
+    color: #ffffff;
     margin: 0;
     padding: 0;
-    transition: all 0.3s ease-in-out;
-}
-
-/* Navbar */
-.navbar {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 15px 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background 0.5s ease-in-out;
 }
 
-.navbar h1 {
+/* Header */
+header {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 2rem;
 }
 
-.theme-toggle {
-    background: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: white;
-    transition: transform 0.3s;
-}
-
-.theme-toggle:hover {
-    transform: scale(1.2);
-}
-
-/* Layout */
-.container {
+/* Main Layout */
+main {
     display: flex;
-    min-height: 100vh;
+    margin-top: 80px;
+    width: 80%;
+    max-width: 1200px;
 }
 
 /* Sidebar */
-.sidebar {
-    width: 300px;
+aside {
+    width: 30%;
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
-    border-right: 2px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    backdrop-filter: blur(15px);
 }
 
-.sidebar h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.sidebar ul {
+ul {
     list-style: none;
     padding: 0;
 }
 
-.sidebar li {
-    margin: 10px 0;
+li {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-.sidebar a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease-in-out;
+li:hover {
+    background: rgba(255, 255, 255, 0.2);
 }
 
-.sidebar a:hover {
-    color: #ff6b6b;
-}
-
-/* Content */
-.content {
-    flex: 1;
-    padding: 30px;
-}
-
-.writing-content {
-    background: rgba(255, 255, 255, 0.1);
+/* Content Display */
+#content-display {
+    width: 70%;
     padding: 20px;
-    border-radius: 10px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Button */
+button {
+    padding: 10px 20px;
+    background: #ff6b6b;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
 }
 
 /* Dark Mode */
 .dark-mode {
-    background: linear-gradient(135deg, #111, #333);
+    background: linear-gradient(135deg, #000000, #1a1a1a);
 }
 
-.dark-mode .navbar,
-.dark-mode .sidebar {
-    background: rgba(0, 0, 0, 0.8);
+.dark-mode aside,
+.dark-mode header {
+    background: rgba(0, 0, 0, 0.3);
 }
 
-.dark-mode .theme-toggle i {
-    color: yellow;
-}
-
-.dark-mode .sidebar a {
-    color: #ddd;
-}
-
-.dark-mode .sidebar a:hover {
-    color: #ffbe76;
+.dark-mode li:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
