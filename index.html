@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Writings Hub</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
 </head>
 <body>
-    <header>
-        <h1 class="logo">Writings Hub</h1>
-        <button id="theme-toggle" class="theme-btn">🌙</button>
-    </header>
 
-    <main id="main-content">
-        <section id="writings-section">
-            <h2>Your Writings</h2>
-            <div id="writings-list"></div>
-        </section>
-    </main>
+    <div class="container">
+        <header>
+            <h1>WRITINGS HUB</h1>
+            <button id="theme-toggle">🌙</button>
+        </header>
 
-    <div id="content-display" class="hidden"></div>
+        <main id="content">
+            <div id="home">
+                <h2>Your Writings</h2>
+                <ul id="writings-list"></ul>
+            </div>
 
-    <footer>
-        <p>© 2025 Writings Hub | Designed for Elegance</p>
-    </footer>
+            <div id="writing-content" class="hidden">
+                <button id="back-button">← Back</button>
+                <div id="writing-display"></div>
+            </div>
+        </main>
+
+        <footer>© 2025 Writings Hub | Designed for Elegance</footer>
+    </div>
+
 </body>
 </html>
