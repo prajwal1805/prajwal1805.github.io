@@ -28,12 +28,12 @@ async function fetchWritings() {
 
         // Create list of writings
         writings.forEach((writing) => {
-            const listItem = document.createElement("li");
-            listItem.textContent = writing.title;
-            listItem.dataset.file = writing.file;
+            const card = document.createElement("div");
+            card.classList.add("writing-card");
+            card.innerHTML = `<h3>${writing.title}</h3>`;
 
-            listItem.addEventListener("click", async () => {
-                const file = listItem.dataset.file;
+            card.addEventListener("click", async () => {
+                const file = writing.file;
 
                 try {
                     const response = await fetch(file);
@@ -62,7 +62,7 @@ async function fetchWritings() {
                 }
             });
 
-            writingsList.appendChild(listItem);
+            writingsList.appendChild(card);
         });
 
     } catch (error) {
