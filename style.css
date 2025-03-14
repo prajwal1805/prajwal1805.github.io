@@ -1,138 +1,138 @@
-/* General Styles */
+/* General Styling */
 body {
-    font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #141414, #1c1c1c);
-    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+    background: #f5f5f5;
+    color: #333;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
     transition: background 0.5s ease-in-out, color 0.5s ease-in-out;
 }
 
-/* Header */
+/* Dark Mode */
+.dark-mode {
+    background: #1a1a1a;
+    color: #f5f5f5;
+}
+
 header {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    position: fixed;
-    top: 0;
-    z-index: 100;
-    transition: all 0.3s ease-in-out;
-}
-
-h1 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-/* Toggle Button */
-button {
-    padding: 10px 16px;
-    background: rgba(255, 255, 255, 0.2);
-    border: none;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
     color: white;
-    font-size: 1rem;
-    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode header {
+    background: linear-gradient(135deg, #222, #555);
+}
+
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 20px;
     cursor: pointer;
-    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    transition: transform 0.3s ease-in-out;
 }
 
-button:hover {
-    transform: scale(1.1);
-    background: rgba(255, 255, 255, 0.4);
+#theme-toggle:hover {
+    transform: scale(1.2);
 }
 
-/* Home Screen */
-#home-screen {
-    text-align: center;
-    margin-top: 120px;
-    width: 80%;
-    transition: opacity 0.5s ease-in-out;
+/* Writings List */
+#writings-list-container {
+    padding: 20px;
 }
 
-/* Writing List */
-ul {
+#writings-list {
     list-style: none;
     padding: 0;
 }
 
-li {
-    padding: 12px;
-    margin: 8px 0;
-    background: rgba(255, 255, 255, 0.1);
+#writings-list li {
+    margin: 10px 0;
+}
+
+#writings-list button {
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 18px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
 }
 
-li:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.05);
+#writings-list button:hover {
+    transform: scale(1.1);
+    background: #ff3b3b;
 }
 
-/* Content Screen */
-#content-screen {
-    position: fixed;
-    top: 0;
-    left: 100%;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: left 0.7s ease-in-out;
-    text-align: center;
+.dark-mode #writings-list button {
+    background: #ffbe76;
+    color: #222;
 }
 
-#back-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    padding: 10px;
-    background: white;
-    color: black;
-    border-radius: 8px;
+.dark-mode #writings-list button:hover {
+    background: #ff9f1a;
 }
 
-/* Show Content */
-.show-content #home-screen {
+/* Writing Content */
+#writing-content {
+    padding: 20px;
     opacity: 0;
-    pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }
 
-.show-content #content-screen {
-    left: 0;
+#writing-content.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#content-display {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.dark-mode #content-display {
+    background: #333;
+    color: white;
+}
+
+/* Back Button */
+#back-button {
+    background: #555;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background 0.3s ease-in-out;
+}
+
+#back-button:hover {
+    transform: scale(1.1);
+    background: #333;
 }
 
 /* Footer */
 footer {
     margin-top: 50px;
-    padding: 20px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #ddd;
+    padding: 10px;
+    font-size: 14px;
+    opacity: 0.7;
 }
 
-/* Dark Mode */
-.dark-mode {
-    background: linear-gradient(135deg, #000000, #1a1a1a);
-}
-
-.dark-mode #content-screen {
-    background: rgba(10, 10, 10, 0.9);
-}
-
-.dark-mode li:hover {
-    background: rgba(255, 255, 255, 0.1);
+/* Hide Elements */
+.hidden {
+    display: none;
 }
