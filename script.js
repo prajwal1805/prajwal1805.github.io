@@ -1,56 +1,71 @@
 document.addEventListener("DOMContentLoaded", () => {
-    loadTheme();
+    // Load Dark Mode Preference
+    if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark-mode");
+    }
+
+    // Toggle Dark Mode
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+    });
+
+    // Fetch Writings
     fetchWritings();
 });
 
-// Dark Mode Toggle
-document.getElementById("theme-toggle").addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-    localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-});
-
-function loadTheme() {
-    if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark-mode");
-    }
-}
-
-// Fetch Writings
+// Function to Fetch Writings
 async function fetchWritings() {
     try {
         const response = await fetch("writings.json?t=" + new Date().getTime());
         const writings = await response.json();
         const writingsList = document.getElementById("writings-list");
+        const contentDisplay = document.getElementById("content-display");
+        const writingsContainer = document.getElementById("writings-list-container");
+        const writingContent = document.getElementById("writing-content");
+        const backButton = document.getElementById("back-button");
+
+        // Clear existing list
         writingsList.innerHTML = "";
 
-        writings.forEach(writing => {
+        // Create list items
+        writings.forEach((writing) => {
             const listItem = document.createElement("li");
-            listItem.textContent = writing.title;
-            listItem.dataset.file = writing.file;
+            const button = document.createElement("button");
+            button.textContent = writing.title;
+            button.dataset.file = writing.file;
 
-            listItem.addEventListener("click", () => loadWriting(writing));
+            // Click event to load content
+            button.addEventListener("click", async (event) => {
+                event.preventDefault();
+                const file = event.target.dataset.file;
+
+                try {
+                    const response = await fetch(file);
+                    const text = await response.text();
+                    contentDisplay.innerHTML = `<h2>${writing.title}</h2><p>${text.replace(/\n/g, "<br>")}</p>`;
+
+                    // Show content section with animation
+                    writingsContainer.classList.add("hidden");
+                    writingContent.classList.add("show");
+                } catch (error) {
+                    contentDisplay.innerHTML = `<p>Error loading content.</p>`;
+                }
+            });
+
+            listItem.appendChild(button);
             writingsList.appendChild(listItem);
         });
+
+        // Back button functionality
+        backButton.addEventListener("click", () => {
+            writingContent.classList.remove("show");
+            setTimeout(() => {
+                writingsContainer.classList.remove("hidden");
+            }, 300);
+        });
+
     } catch (error) {
         console.error("Error loading writings:", error);
     }
 }
-
-// Load Writing Content
-async function loadWriting(writing) {
-    try {
-        const response = await fetch(writing.file + "?t=" + new Date().getTime());
-        const text = await response.text();
-        document.getElementById("content-display").innerHTML = `<h2>${writing.title}</h2><p>${text.replace(/\n/g, "<br>")}</p>`;
-
-        // Swoosh in effect
-        document.body.classList.add("show-content");
-    } catch (error) {
-        document.getElementById("content-display").innerHTML = "<p>Error loading content.</p>";
-    }
-}
-
-// Back Button
-document.getElementById("back-button").addEventListener("click", () => {
-    document.body.classList.remove("show-content");
-});
