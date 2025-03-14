@@ -1,38 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Load dark mode preference
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById("theme-toggle");
     if (localStorage.getItem("darkMode") === "true") {
         document.body.classList.add("dark-mode");
     }
 
-    // Toggle dark mode
-    document.getElementById("theme-toggle").addEventListener("click", () => {
+    themeToggle.addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
         localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
     });
 
-    // Load writings
+    // Load writings dynamically
     fetchWritings();
 });
 
-// Function to fetch and display writings list
+// Function to fetch and display writings
 async function fetchWritings() {
     try {
-        const response = await fetch("writings.json?t=" + new Date().getTime()); // Ensure fresh fetch
+        const response = await fetch("writings.json?t=" + new Date().getTime());
         const writings = await response.json();
         const writingsList = document.getElementById("writings-list");
         const contentDisplay = document.getElementById("content-display");
+        const mainContent = document.getElementById("main-content");
 
-        // Clear previous list
+        // Clear previous entries
         writingsList.innerHTML = "";
 
-        // Create list items
+        // Create list of writings
         writings.forEach((writing) => {
-            const listItem = document.createElement("button");
-            listItem.classList.add("writing-item");
+            const listItem = document.createElement("li");
             listItem.textContent = writing.title;
             listItem.dataset.file = writing.file;
 
-            // Click event to load content
             listItem.addEventListener("click", async () => {
                 const file = listItem.dataset.file;
 
@@ -40,19 +39,22 @@ async function fetchWritings() {
                     const response = await fetch(file);
                     const text = await response.text();
 
-                    // Hide the writings list and show content
-                    writingsList.style.display = "none";
-                    contentDisplay.style.display = "block";
+                    // Display the writing
                     contentDisplay.innerHTML = `
-                        <button class="back-button">⬅ Back</button>
                         <h2>${writing.title}</h2>
                         <p>${text.replace(/\n/g, "<br>")}</p>
+                        <button class="back-btn">⬅ Back</button>
                     `;
+                    contentDisplay.classList.add("show");
+                    mainContent.style.display = "none"; // Hide main content
 
-                    // Add back button functionality
-                    document.querySelector(".back-button").addEventListener("click", () => {
-                        contentDisplay.style.display = "none";
-                        writingsList.style.display = "block";
+                    // Back Button Event
+                    document.querySelector(".back-btn").addEventListener("click", () => {
+                        contentDisplay.classList.remove("show");
+                        setTimeout(() => {
+                            contentDisplay.innerHTML = "";
+                            mainContent.style.display = "block"; // Show main content again
+                        }, 300);
                     });
 
                 } catch (error) {
