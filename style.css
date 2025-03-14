@@ -22,6 +22,7 @@ header {
     background: linear-gradient(45deg, #222, #444);
     color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 15px 15px;
 }
 
 .logo {
@@ -50,32 +51,35 @@ header {
 }
 
 #writings-list {
-    list-style: none;
-    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
 }
 
-#writings-list li {
-    display: block;
-    background: #ddd;
-    padding: 15px;
-    margin: 10px auto;
-    width: 300px;
-    border-radius: 8px;
+.writing-card {
+    background: #fff;
+    padding: 20px;
+    width: 280px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-#writings-list li:hover {
-    background: #bbb;
-    transform: translateY(-3px);
+.writing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
 /* Dark Mode Styles */
-.dark-mode #writings-list li {
+.dark-mode .writing-card {
     background: #333;
+    color: white;
 }
 
-.dark-mode #writings-list li:hover {
+.dark-mode .writing-card:hover {
     background: #444;
 }
 
@@ -87,7 +91,7 @@ header {
     max-width: 700px;
     margin: 30px auto;
     background: #fff;
-    border-radius: 10px;
+    border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease-in-out;
 }
@@ -125,4 +129,3 @@ footer {
     padding: 20px;
     margin-top: 50px;
 }
-
