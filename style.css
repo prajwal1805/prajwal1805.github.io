@@ -1,16 +1,30 @@
-/* General Styling */
-body {
-    font-family: 'Arial', sans-serif;
+/* General Styles */
+* {
     margin: 0;
     padding: 0;
-    background: #f4f4f4;
-    color: #222;
-    transition: background 0.4s, color 0.4s;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
 }
 
-.dark-mode {
+body {
+    background: #f4f4f4;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+/* Dark Mode */
+body.dark-mode {
     background: #121212;
-    color: #fff;
+    color: #eee;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
 }
 
 /* Header */
@@ -18,114 +32,106 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    background: linear-gradient(45deg, #222, #444);
+    padding: 15px 0;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    border-radius: 12px;
     color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    border-radius: 0 0 15px 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
+header h1 {
+    font-size: 1.8rem;
+    padding-left: 15px;
 }
 
-/* Theme Toggle */
-.theme-btn {
+#theme-toggle {
     background: none;
     border: none;
-    color: white;
-    font-size: 20px;
+    font-size: 1.5rem;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
-.theme-btn:hover {
-    transform: scale(1.1);
-}
-
-/* Writings Section */
-#writings-section {
-    text-align: center;
-    margin-top: 50px;
-}
-
-#writings-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 20px;
-}
-
-.writing-card {
-    background: #fff;
-    padding: 20px;
-    width: 280px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.writing-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* Dark Mode Styles */
-.dark-mode .writing-card {
-    background: #333;
     color: white;
 }
 
-.dark-mode .writing-card:hover {
-    background: #444;
+/* Writing List */
+h2 {
+    margin: 20px 0;
+    font-size: 1.5rem;
 }
 
-/* Writing Content Display */
-#content-display {
-    display: none;
-    text-align: center;
-    padding: 40px;
-    max-width: 700px;
-    margin: 30px auto;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out;
+ul {
+    list-style: none;
+    padding: 0;
 }
 
-.dark-mode #content-display {
-    background: #222;
+li {
+    margin: 10px 0;
 }
 
-/* Hidden class to animate */
+a {
+    display: block;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+a:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Writing Content */
 .hidden {
     display: none;
-    opacity: 0;
-    transform: scale(0.95);
 }
 
-.show {
-    display: block !important;
-    animation: fadeIn 0.4s ease-in-out forwards;
+#writing-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.5s ease-in-out;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+#writing-content.dark-mode {
+    background: #1e1e1e;
+    color: white;
+}
+
+/* Back Button */
+#back-button {
+    background: #ff4b2b;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#back-button:hover {
+    background: #e84118;
 }
 
 /* Footer */
 footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 50px;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
