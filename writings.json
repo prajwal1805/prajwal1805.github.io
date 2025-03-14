@@ -1,4 +1,10 @@
 [
-    { "title": "First Writing", "file": "writings/first-writing.txt" },
-    { "title": "Second Writing", "file": "writings/second-writing.txt" }
+    {
+        "title": "First Writing",
+        "file": "writings/first-writing.txt"
+    },
+    {
+        "title": "Second Writing",
+        "file": "writings/second-writing.txt"
+    }
 ]
