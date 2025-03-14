@@ -1,62 +1,69 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const themeToggle = document.getElementById("theme-toggle");
-    const writingsList = document.getElementById("writings-list");
-    const writingContent = document.getElementById("writing-content");
-    const homeSection = document.getElementById("home");
-    const writingDisplay = document.getElementById("writing-display");
-    const backButton = document.getElementById("back-button");
-
-    // Dark Mode Toggle
+    // Load dark mode preference
     if (localStorage.getItem("darkMode") === "true") {
         document.body.classList.add("dark-mode");
-        writingContent.classList.add("dark-mode");
     }
 
-    themeToggle.addEventListener("click", () => {
+    // Toggle dark mode
+    document.getElementById("theme-toggle").addEventListener("click", () => {
         document.body.classList.toggle("dark-mode");
-        writingContent.classList.toggle("dark-mode");
         localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
     });
 
-    // Load Writings from JSON
-    fetch("writings.json")
-        .then(response => response.json())
-        .then(writings => {
-            writings.forEach(writing => {
-                const listItem = document.createElement("li");
-                const link = document.createElement("a");
-                link.href = "#";
-                link.textContent = writing.title;
-                link.dataset.file = writing.file;
-
-                link.addEventListener("click", async (event) => {
-                    event.preventDefault();
-                    await loadWriting(writing.title, writing.file);
-                });
-
-                listItem.appendChild(link);
-                writingsList.appendChild(listItem);
-            });
-        })
-        .catch(error => console.error("Error loading writings:", error));
-
-    // Load Writing Content
-    async function loadWriting(title, file) {
-        try {
-            const response = await fetch(file);
-            const text = await response.text();
-            writingDisplay.innerHTML = `<h2>${title}</h2><p>${text.replace(/\n/g, "<br>")}</p>`;
-            
-            homeSection.classList.add("hidden");
-            writingContent.classList.remove("hidden");
-        } catch (error) {
-            writingDisplay.innerHTML = `<p>Error loading content.</p>`;
-        }
-    }
-
-    // Back to Home
-    backButton.addEventListener("click", () => {
-        homeSection.classList.remove("hidden");
-        writingContent.classList.add("hidden");
-    });
+    // Load writings
+    fetchWritings();
 });
+
+// Function to fetch and display writings list
+async function fetchWritings() {
+    try {
+        const response = await fetch("writings.json?t=" + new Date().getTime()); // Ensure fresh fetch
+        const writings = await response.json();
+        const writingsList = document.getElementById("writings-list");
+        const contentDisplay = document.getElementById("content-display");
+
+        // Clear previous list
+        writingsList.innerHTML = "";
+
+        // Create list items
+        writings.forEach((writing) => {
+            const listItem = document.createElement("button");
+            listItem.classList.add("writing-item");
+            listItem.textContent = writing.title;
+            listItem.dataset.file = writing.file;
+
+            // Click event to load content
+            listItem.addEventListener("click", async () => {
+                const file = listItem.dataset.file;
+
+                try {
+                    const response = await fetch(file);
+                    const text = await response.text();
+
+                    // Hide the writings list and show content
+                    writingsList.style.display = "none";
+                    contentDisplay.style.display = "block";
+                    contentDisplay.innerHTML = `
+                        <button class="back-button">⬅ Back</button>
+                        <h2>${writing.title}</h2>
+                        <p>${text.replace(/\n/g, "<br>")}</p>
+                    `;
+
+                    // Add back button functionality
+                    document.querySelector(".back-button").addEventListener("click", () => {
+                        contentDisplay.style.display = "none";
+                        writingsList.style.display = "block";
+                    });
+
+                } catch (error) {
+                    contentDisplay.innerHTML = `<p>Error loading content.</p>`;
+                }
+            });
+
+            writingsList.appendChild(listItem);
+        });
+
+    } catch (error) {
+        console.error("Error loading writings:", error);
+    }
+}
