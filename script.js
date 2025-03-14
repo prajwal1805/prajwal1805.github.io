@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchWritings();
 });
 
-// Toggle Dark Mode
+// Dark Mode Toggle
 document.getElementById("theme-toggle").addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
     localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
@@ -42,7 +42,15 @@ async function loadWriting(writing) {
         const response = await fetch(writing.file + "?t=" + new Date().getTime());
         const text = await response.text();
         document.getElementById("content-display").innerHTML = `<h2>${writing.title}</h2><p>${text.replace(/\n/g, "<br>")}</p>`;
+
+        // Swoosh in effect
+        document.body.classList.add("show-content");
     } catch (error) {
         document.getElementById("content-display").innerHTML = "<p>Error loading content.</p>";
     }
 }
+
+// Back Button
+document.getElementById("back-button").addEventListener("click", () => {
+    document.body.classList.remove("show-content");
+});
