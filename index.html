@@ -3,30 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Writings Hub</title>
+    <title>My Writings</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
 
-    <header>
-        <h1>WRITINGS HUB</h1>
-        <button id="theme-toggle">🌙</button>
-    </header>
+    <div class="container">
+        <header>
+            <h1 class="title">My Writings</h1>
+            <button id="theme-toggle">☀️ / 🌙</button>
+        </header>
 
-    <main>
-        <section id="writings-list">
-            <h2>Your Writings</h2>
-            <!-- Writings will be loaded dynamically here -->
-        </section>
-
-        <section id="content-display" style="display: none;">
-            <!-- Writing content will be shown here -->
-        </section>
-    </main>
-
-    <footer>
-        © 2025 Writings Hub | Designed for Elegance
-    </footer>
+        <div id="writings-list"></div>
+        <div id="content-display" class="hidden"></div>
+    </div>
 
     <script src="script.js"></script>
 </body>
